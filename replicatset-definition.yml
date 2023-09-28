@@ -1,0 +1,27 @@
+## the vresion is no the same for replication controller
+apiVersion: apps/v1
+kind: ReplicatSet
+metadata:
+  name: myapp
+  labels: front-end
+
+spec:
+  template:
+##same template of pod 
+    metadata:
+      name: myapp-pod
+      labels:
+      app: myapp
+      type : front-end
+    spec: 
+      containers:
+      - name: nginx-container
+        image: nginix
+replicas: 3
+## if we want other pods to be created as the specofied in sepc
+selector: 
+ matchLabels:
+   type: front-end
+
+## run kubectl create -f replicatset-definition.yml
+### run kubectl get replicatset  

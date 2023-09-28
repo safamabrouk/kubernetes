@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+   name: myapp-rc
+   labels:
+    app: myapp
+    type: front-end
+## we will nested 2 def togother the def of replicat and pod parent and file
+spec:
+#template of pod 
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+       app: myapp
+       type : front-end
+    # definition of the object pod which we will replicate and scale
+    spec: 
+      containers:
+      - name: nginx-container
+        image: nginix
+##number of replicat
+replicat: 3
+#### run kubectl create -f replication-controller
+#### run kubectl get replicationcontroller . 
+#### run kubectl get pods
+        
