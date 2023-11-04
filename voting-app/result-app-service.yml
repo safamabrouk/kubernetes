@@ -1,0 +1,18 @@
+## internal service that we will expose it to the external
+appVersion: v1
+kind: Service
+metadata:
+  name: result-service 
+  labels:
+    name: result-service
+    app: demo-voting-app
+spec:
+#make an internal service external.
+  type: NodePort
+  ports:
+    - port: 80 ##port of pod 
+      targetPort: 80 ## port of the service 
+      nodePort: 30004
+  selector: 
+    name: result-voting-app-pod
+    app: demo-voting-app

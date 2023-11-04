@@ -1,0 +1,22 @@
+##internal service to expose pods inside the cluster 
+appVersion: v1
+kind: Service
+metadata:
+  name: db ## thename of the host (replace the ip)
+  ## we(re gonna inside the pod applicative call the postgres service db with the name of db )
+  labels:
+    name: postgres-service
+    app: demo-voting-app
+spec:
+  ports:
+    - port: 5432 ##port of pod 
+      targetPort: 5432 ## port of the service 
+    ## link the service ti the pod 
+    # we use the label.name in the def of Pod
+    # we select all the lables def
+    # including the name and the app label
+    # it's like we say y're gonna expose the 
+    #pod named : "name" and in the group 'app' 
+  selector: 
+    name: postgres-pod
+    app: demo-voting-app

@@ -1,0 +1,24 @@
+appVersion: v1
+kind: Service
+metadata:
+  name: redis 
+  ## w're gnna use redis as the name od host of service 
+  ##when we call it in the pod applicative 
+  ## we use this name and the port exposed in the section ports 
+  ## target port to call rediis from any pod in the group of pods (label app)
+  labels:
+    name: redis-service
+    app: demo-voting-app
+spec:
+  ports:
+    - port: 6379 ##port of pod 
+      targetPort: 639 ## port of the service 
+    ## link the service ti the pod 
+    # we use the label.name in the def of Pod
+    # we select all the lables def
+    # including the name and the app label
+    # it's like we say y're gonna expose the 
+    #pod named : "name" and in the group 'app' 
+  selector: 
+    name: redis-pod
+    app: demo-voting-app

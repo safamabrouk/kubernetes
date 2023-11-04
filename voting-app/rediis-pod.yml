@@ -1,0 +1,15 @@
+appVersion: v1
+kind: Pod
+metadata: 
+  name: rediis-pod
+  labels:
+    name: rediis-pod
+    ## same label of group of application in the same cluster
+    app: demo-voting-app
+spec:
+  containers:
+    - name: rediis
+      image: rediis
+      ports:
+       -containerPort: 6379
+       

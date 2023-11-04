@@ -1,0 +1,21 @@
+appVersion: v1
+kind: Pod
+metadata: 
+  name: voting-app-pod
+  labels:
+  ## label for the component to diferent it from other 
+  #even ot's in teh same group of application filtered 
+  #by the app label 
+    name: voting-app-pod
+    #label of application it's used to group a stack of pods on the same application .
+    #used for replicat set and deployement tp regroup pods and identify a group opf pods 
+    ## used to create a group of pods under the same label
+    #used to filter
+    app: demo-voting-app
+spec:
+  containers:
+    - name: voting-app
+      image: kodekloud/examplevotingapp_vote:v1
+      ports:
+       -containerPort: 80
+       
