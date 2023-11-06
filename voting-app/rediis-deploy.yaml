@@ -1,0 +1,28 @@
+appVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: rediis-deploy
+  labels:
+    name: rediis-deploy
+    app: demo-voting-app
+spec:
+  replication: 1
+  selector:
+    matchLabels:
+      name: rediis-pod
+      app: demo-voting-app
+
+  template:
+   metadata: 
+    name: rediis-pod
+    labels:
+      name: rediis-pod
+      ## same label of group of application in the same cluster
+      app: demo-voting-app
+  spec:
+    containers:
+      - name: rediis
+        image: rediis
+        ports:
+        -containerPort: 6379
+       

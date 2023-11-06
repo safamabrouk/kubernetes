@@ -50,4 +50,14 @@ kubectl create -f result-service.yml
 minkube service result-service --url 
 
 
+##create deployment (one deployment per type of pod .deploymenet = replicas of pods )
+kubectl create -f result-app-deploy.yaml
+kubectl create -f result-service.yaml 
+minikube service result-service --url ## get the url of service we need it to communicate with pod result 
+###repeat this with all kind of pod and if the pod is exposed 
+create his service /
+
+### deployment => replicas of pod insted of create one pod 
+   we create 3 pods with the template of pod mentionned in the file 
+   service => if the pod is exposed internally or externally 
 
